@@ -1,10 +1,10 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
 
 module.exports =  function(req, res) {
   
-    var id =  req.query.id;
+    const id =  req.query.id;
 
-    const reg = data.find(d => id == id);
+    const reg = data.find(user => user.id == id);
     reg.name = req.body.name;
     reg.job = req.body.job;
 

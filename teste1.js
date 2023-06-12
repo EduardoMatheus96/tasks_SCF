@@ -1,14 +1,13 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
 
-const getUser = ( req, res, next ) => {
+const getUser = ( req, res ) => {
     
-    var name =  req.query.name;
-
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
-    }
+    const name =  req.query.name.toLowerCase().replace(' ', '');
+    const index = data.findIndex((elem)=>elem.name.toLowerCase().replace(' ', '')===name)
+    const result = {...data[index]}
+    data[index].reads++
+    delete result.reads
+    res.send(result)
 
 };
 
